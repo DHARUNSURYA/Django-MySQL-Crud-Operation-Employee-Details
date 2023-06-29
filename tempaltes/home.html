@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    table {
+     
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: lightgray;
+    }
+     
+    .delete-button {
+      background-color: #f44336;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #b9b4b4;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 5px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+        text-align: center;
+    }
+
+    .container a {
+      width: 600px;
+      padding: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    text-decoration-line: none;
+    text-align: center;
+    }
+
+    .container a:hover {
+      background-color: #45a049;
+    }
+    a {
+      width: 600px;
+      padding: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    text-decoration-line: none;
+    text-align: center;
+    }
+    .b{
+      
+        width: 600px;
+        padding: 5px;
+        background-color: red;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      text-decoration-line: none;
+      text-align: center;
+      
+    }
+    .don{
+      width: 90%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      placeholder:center;
+    }
+    input::placeholder {
+      text-align: center;
+      color:purple;
+    }
+    
+  </style>
+</head>{% block content %}
+<body>
+    <br><br><br><br> 
+    <div class="container">
+    <h2>Home</h2>
+    <center><input class='don'type='text' name='search' id='sea' placeholder='Search'></center>
+    <br>
+     <center> <a href="insert/">Insert</a></center>
+     <br>
+  </div>
+
+  <div class='a'>
+    <center>
+  <table>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Update</ht>
+        <th>Delete</ht>
+      </tr>
+    </thead>
+    {% for mydata in data%}
+    <tbody id='my'>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{mydata.name}}</td>
+        <td>{{mydata.age}}</td>
+        <td>{{mydata.address}}</td>
+        <td>{{mydata.contact}}</td>
+        <td>{{mydata.email}}</td>
+        <td><a href="update/{{mydata.id}}">Update</a></td>
+        <td><a class='b' href="delete/{{mydata.id}}">Delete</a></td>
+
+      </tr>
+    </tbody>
+    {% endfor %}
+</table></center>
+</div>
+</body>
+<script>
+  $("document").ready(function(){
+    $('#sea').keyup(function(){
+      var value = $(this).val().toLowerCase()
+      $("#my tr").filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });  
+</script>
+
+{% endblock %}
+</html>
